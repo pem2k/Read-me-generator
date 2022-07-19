@@ -8,8 +8,14 @@ const questions = [
     "Briefly describe your project",
     "How do you install this project?",
     "How do you use this project?",
+    "Please enter the url of the deployed application", 
+    "Please enter your github username", 
+    "Please provide your email address",
     "Who would you like to include in the credits?",
-    "What license would you like to use?"];
+    "Please detail how others can contribute",
+    "Please provide tests for the program",
+    "What license would you like to use?"
+];
 
 
 //These functions retrieve license text and append them based on user choice
@@ -17,32 +23,31 @@ const mitL = function () {
     fetch('https://api.github.com/licenses/mit')
         .then(response => response.json())
         .then(data => {
-            console.log(data.body)
-            fs.appendFile(`README.md`, `${data.body}`, err => err ? console.error(err) : console.log("MIT License written to file"))
-        })
-
+            fs.appendFile(`README.md`, `\n${data.body}`, err => err ? console.error(err) : console.log("MIT License written to file"))
+        }
+        )
 }
 
 const apacheL = function () {
     fetch('https://api.github.com/licenses/apache-2.0')
         .then(response => response.json())
         .then(data => {
-            fs.appendFile(`README.md`, `${data.body}`, err => err ? console.error(err) : console.log("Apache License written to file"))
-        })
-
+            fs.appendFile(`README.md`, `\n${data.body}`, err => err ? console.error(err) : console.log("Apache License written to file"))
+        }
+        )
 }
 
 const gplL = function () {
     fetch('https://api.github.com/licenses/GPL-3.0')
         .then(response => response.json())
         .then(data => {
-            fs.appendFile(`README.md`, `${data.body}`, err => err ? console.error(err) : console.log("GPL License written to file"))
-        })
-
+            fs.appendFile(`README.md`, `\n${data.body}`, err => err ? console.error(err) : console.log("GPL License written to file"))
+        }
+        )
 }
 
 //array of licenses
-const licenses = ["MIT", "Apache", "GPLV3"]
+const licenses = ["MIT", "Apache", "GPLv3", "None"]
 
 
 function init() {
@@ -71,52 +76,118 @@ function init() {
             {
                 type: 'input',
                 message: questions[4],
+                name: 'deployed',
+            },
+            {
+                type: 'input',
+                message: questions[5],
+                name: 'github',
+            },
+            {
+                type: 'input',
+                message: questions[6],
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: questions[7],
                 name: 'credits',
             },
             {
+                type: 'input',
+                message: questions[8],
+                name: 'contribute',
+            },
+            {
+                type: 'input',
+                message: questions[9],
+                name: 'test',
+            },
+            {
                 type: 'list',
-                message: questions[5],
+                message: questions[10],
                 choices: licenses,
                 name: 'license',
             }
 
         ]).then(function (response) {
-            fs.writeFile(`README.md`, `# ${response.title}\n\n`, err => err ? console.error(err) : console.log("File created and Title written to file"))
+            //readme.md creation and appendation
+            const badge = function(){
+                if (response.license == "MIT") {
+                    return "![License badge](https://img.shields.io/static/v1?label=License&message=MIT&color=brightgreen)"
+                }
+                else if (response.license == "Apache") {
+                    return "![License badge](https://img.shields.io/static/v1?label=License&message=Apache-2.0&color=brightgreen)"
+                }
+                else if (response.license == "GPLv3") {
+                    return "![License badge](https://img.shields.io/static/v1?label=License&message=GPLv3&color=brightgreen)"
+                }}
+                
+
+            fs.writeFile(`README.md`, 
+`# ${response.title}
+${badge()}
+
+## Description
+
+${response.description}
+
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [Contribution](#contribution)
+- [Tests](#tests)
+- [Questions](#questions)
+- [License](#license)
+
+
+## Installation
+
+${response.installation}
+
+
+## Usage
+
+${response.usage}
+
+${response.deployed}
+
+
+## Credits
+
+${response.credits}
+
+
+## Contribution
+
+${response.contribute}
+
+
+## Tests
+
+${response.test}
+
+
+## Questions
+
+[https://github.com/${response.github}](https://github.com/${response.github})
+
+[${response.email}](mailto: ${response.email})
+
+
+## License`, err => err ? console.error(err):console.log("written to file"))
+
+            //license badges based on selection
 
             if (response.license == "MIT") {
-                fs.appendFile(`README.md`, `![License Badge](https://img.shields.io/badge/license-MIT-green)\n\n`, err => err ? console.error(err) : console.log("File created and Title written to file"))
-            }
-            else if (response.license == "Apache") {
-                fs.appendFile(`README.md`, `![License Badge](https://img.shields.io/badge/License-Apache%202.0-green)\n\n`, err => err ? console.error(err) : console.log("File created and Title written to file"))
-            }
-            else {
-                fs.appendFile(`README.md`, `![License Badge](https://img.shields.io/badge/License-GPL%203-green)\n\n`, err => err ? console.error(err) : console.log("File created and Title written to file"))
-            }
-
-            fs.appendFile(`README.md`, `## Description\n${response.description}\n\n`, err => err ? console.error(err) : console.log("Table of contents written to file"))
-
-            fs.appendFile(`README.md`, `## Table of Contents\n - [Installation](#installation)\n - [Usage](#usage)\n - [Credits](#credits)\n - [License](#license)\n\n`, err => err ? console.error(err) : console.log("Table of contents written to file"))
-
-            fs.appendFile(`README.md`, `## Installation\n ${response.installation}\n`, err => err ? console.error(err) : console.log("Installation written to file"))
-
-            fs.appendFile(`README.md`, `## Usage\n ${response.usage}\n\n`, err => err ? console.error(err) : console.log("Usage written to file"))
-
-            fs.appendFile(`README.md`, `## Credits\n ${response.credits}\n\n`, err => err ? console.error(err) : console.log("Credits written to file"))
-
-            fs.appendFile(`README.md`, `## license\n ${response.license}\n\n`, err => err ? console.error(err) : console.log("License written to file"))
-
-            if (response.license == "MIT") {
-
                 mitL()
-
             } else if (response.license == "Apache") {
-
                 apacheL()
-
-            } else {
-
+            } else if (response.license == "GPLv3") {
                 gplL()
-
             }
         })
 
