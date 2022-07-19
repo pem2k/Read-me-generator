@@ -1,9 +1,9 @@
-# Testing
+# Read-Me-Generator
 ![License badge](https://img.shields.io/static/v1?label=License&message=MIT&color=brightgreen)
 
 ## Description
 
-This is a test project for a video explanation
+I built this app to quickly create high quality .md files to use for github readmes. It prompts the user with multiple questions that fill out the .md template. Following user input, the responses are written to a file in professional formatting.
 
 
 ## Table of Contents
@@ -19,13 +19,13 @@ This is a test project for a video explanation
 
 ## Installation
 
-Install required dependencies listed in package.json
+To use this project you must install the required dependencies, inquirer@8 and node-fetch@2
 
 ## Usage
 
-Navigate to the containing folder of index.js through terminal, run the command "node index.js"
+Once the dependencies have been installed, navigate to index.js's containing folder in terminal, and run the command "node index.js"
 
-
+n/a
 
 ## Credits
 
@@ -33,7 +33,7 @@ Parker McKillop
 
 ## Contribution
 
-Pull request
+
 
 ## Tests
 
@@ -49,7 +49,7 @@ Pull request
 ## License
 MIT License
 
-Copyright (c) [year] [fullname]
+Copyright (c) [2022] [Parker McKillop]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
