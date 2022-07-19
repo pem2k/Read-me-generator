@@ -1,9 +1,9 @@
-# Read-Me-Generator
+# Testing
 ![License badge](https://img.shields.io/static/v1?label=License&message=MIT&color=brightgreen)
 
 ## Description
 
-Generates professional readme's
+This is a test project for a video explanation
 
 
 ## Table of Contents
@@ -21,10 +21,9 @@ Generates professional readme's
 
 Install required dependencies listed in package.json
 
-
 ## Usage
 
-Once dependencies have been installed, open the containing folder in terminal and run the command "node index.js"
+Navigate to the containing folder of index.js through terminal, run the command "node index.js"
 
 
 
@@ -34,7 +33,7 @@ Parker McKillop
 
 ## Contribution
 
-
+Pull request
 
 ## Tests
 
@@ -42,9 +41,9 @@ Parker McKillop
 
 ## Questions
 
-github.com/pem2k
+[https://github.com/pem2k](https://github.com/pem2k)
 
-mckilpar000@hotmail.com
+[mckilpar000@hotmail.com](mailto:mckilpar000@hotmail.com)
 
 
 ## License

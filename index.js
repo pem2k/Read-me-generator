@@ -148,34 +148,29 @@ ${response.description}
 
 ${response.installation}
 
-
 ## Usage
 
 ${response.usage}
 
 ${response.deployed}
 
-
 ## Credits
 
 ${response.credits}
-
 
 ## Contribution
 
 ${response.contribute}
 
-
 ## Tests
 
 ${response.test}
-
 
 ## Questions
 
 [https://github.com/${response.github}](https://github.com/${response.github})
 
-[${response.email}](mailto: ${response.email})
+[${response.email}](mailto:${response.email})
 
 
 ## License`, err => err ? console.error(err):console.log("written to file"))
