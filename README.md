@@ -25,7 +25,7 @@ To use this project you must install the required dependencies, inquirer@8 and n
 
 Once the dependencies have been installed, navigate to index.js's containing folder in terminal, and run the command "node index.js"
 
-n/a
+[Walkthrough](https://drive.google.com/file/d/1qi3bJ4-3TCs0jmfMV7yMWXTyoOZa_80Z/view)
 
 ## Credits
 
